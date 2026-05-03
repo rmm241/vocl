@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Vocl dark-first design system */
+    --background: 230 12% 5%;
+    --foreground: 210 20% 96%;
+
+    --card: 230 12% 7%;
+    --card-foreground: 210 20% 96%;
+
+    --popover: 230 14% 6%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 186 100% 60%;
+    --primary-foreground: 230 20% 6%;
+    --primary-glow: 186 100% 70%;
+
+    --secondary: 260 80% 78%;
+    --secondary-foreground: 230 20% 8%;
+
+    --muted: 230 10% 12%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 260 80% 78%;
+    --accent-foreground: 230 20% 8%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 14% 14%;
+    --input: 220 14% 14%;
+    --ring: 186 100% 60%;
+
+    --radius: 1rem;
+
+    --glass-bg: 230 20% 10% / 0.55;
+    --glass-border: 210 30% 90% / 0.08;
+
+    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(186 100% 50% / 0.18), transparent 60%),
+                     radial-gradient(ellipse 60% 50% at 80% 30%, hsl(260 80% 60% / 0.12), transparent 60%);
+    --gradient-primary: linear-gradient(135deg, hsl(186 100% 60%), hsl(196 100% 65%));
+    --shadow-glow: 0 0 60px -10px hsl(186 100% 60% / 0.45);
+    --shadow-elevated: 0 30px 80px -30px hsl(186 100% 50% / 0.25), 0 10px 40px -20px hsl(0 0% 0% / 0.5);
+
+    --sidebar-background: 230 12% 6%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 186 100% 60%;
+    --sidebar-primary-foreground: 230 20% 6%;
+    --sidebar-accent: 230 10% 12%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 14% 14%;
+    --sidebar-ring: 186 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+    background-image: var(--gradient-hero);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: hsl(var(--glass-bg));
+    border: 1px solid hsl(var(--glass-border));
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+  .glass-strong {
+    background-color: hsl(230 20% 9% / 0.75);
+    border: 1px solid hsl(210 30% 90% / 0.1);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+  }
+  .text-balance { text-wrap: balance; }
+  .grain::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+}
